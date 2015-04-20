@@ -14,20 +14,29 @@ import 'dart:async';
 
 export 'src/models.dart';
 
-Stream<Manifest> parseManifest(List<int> bytes) {
-
-  // Decode the Zip file
-  Archive archive = new ZipDecoder().decodeBytes(bytes);
-
-  List<int> manifestBytes = archive.findFile('AndroidManifest.xml').content;
-
-  String xmlString = parser.parse(manifestBytes);
+/**
+ * Return a [Manifest] object that represents the parsed AndroidManifest.xml
+ */
+Future<Manifest> parseManifest(List<int> bytes) {
+  String xmlString = parseManifestXml(bytes);
 
   var xmlStreamer = new XmlStreamer(xmlString);
 
   var xmlObjectBuilder =
       new XmlObjectBuilder<Manifest>(xmlStreamer, new ManifestProcessor());
 
-  //xmlObjectBuilder.onProcess().listen((e) => print("listen: ${e.application}"));
-  return xmlObjectBuilder.onProcess();
+  return xmlObjectBuilder.onProcess().elementAt(0);
+}
+
+/**
+ * Returns a string that represents the parsed AndroidManifest.xml
+ */
+String parseManifestXml(List<int> bytes) {
+
+  // Decode the Zip file
+  Archive archive = new ZipDecoder().decodeBytes(bytes);
+
+  List<int> manifestBytes = archive.findFile('AndroidManifest.xml').content;
+
+  return parser.parse(manifestBytes);
 }
