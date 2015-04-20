@@ -1,5 +1,8 @@
 library mmodels;
 
+/**
+ * http://developer.android.com/guide/topics/manifest/manifest-element.html
+ */
 class Manifest {
   int versionCode;
   String versionName;
@@ -57,7 +60,8 @@ class UsesSdk {
   int targetSdkVersion;
   int maxSdkVersion;
 
-  toString() => "{minSdkVersion: $minSdkVersion, targetSdkVersion: $targetSdkVersion, maxSdkVersion: $maxSdkVersion}";
+  toString() =>
+      "{minSdkVersion: $minSdkVersion, targetSdkVersion: $targetSdkVersion, maxSdkVersion: $maxSdkVersion}";
 }
 
 /**
@@ -96,7 +100,8 @@ class Application {
 
   List<Activity> activities = [];
 
-  toString() => "{theme: $theme, label: $label, icon: $icon, activities: $activities}";
+  toString() =>
+      "{theme: $theme, label: $label, icon: $icon, activities: $activities}";
 }
 
 /**

@@ -1,7 +1,5 @@
 library parser;
 
-import 'dart:math' as math;
-
 /**
  * Extract android manifest from apk files. Original implementation in Java can
  * be found here: http://pastebin.com/c53DuqMt
@@ -93,7 +91,7 @@ String parse(List<int> bytes) {
 
     switch (currentTag) {
       case START_TAG:
-      // Expected to be 14001400
+        // Expected to be 14001400
         int tagSix = lew(bytes, off + 6 * 4);
 
         // Number of Attributes to follow
@@ -103,7 +101,8 @@ String parse(List<int> bytes) {
         off += 9 * 4;
 
         // Tag name
-        String tagName = compXmlString(bytes, stringIndexTableOffset, stringTable, nameSi);
+        String tagName =
+            compXmlString(bytes, stringIndexTableOffset, stringTable, nameSi);
 
         // Tag starts on line number
         startTagLineNo = lineNo;
@@ -123,7 +122,6 @@ String parse(List<int> bytes) {
           // AttrValue Str, Index or FFFFFFFF
           int attrValueSi = lew(bytes, off + 2 * 4);
 
-
           int attrFlags = lew(bytes, off + 3 * 4);
 
           // AttrValue ResourceId or dup AttrVale StrInd
@@ -133,13 +131,15 @@ String parse(List<int> bytes) {
           off += 5 * 4;
 
           // Name of attribute
-          String attrName = compXmlString(bytes, stringIndexTableOffset, stringTable, attrNameSi);
+          String attrName = compXmlString(
+              bytes, stringIndexTableOffset, stringTable, attrNameSi);
 
           // Value of attribute
           String attrValue;
 
           if (attrValueSi != 0xffffffff) {
-            attrValue = compXmlString(bytes, stringIndexTableOffset, stringTable, attrValueSi);
+            attrValue = compXmlString(
+                bytes, stringIndexTableOffset, stringTable, attrValueSi);
           } else {
             attrValue = "0x${attrResId.toRadixString(16).padLeft(8, "0")}";
           }
@@ -159,7 +159,8 @@ String parse(List<int> bytes) {
         off += 6 * 4;
 
         // Grab the actual tag name
-        String tagName = compXmlString(bytes, stringIndexTableOffset, stringTable, nameSi);
+        String tagName =
+            compXmlString(bytes, stringIndexTableOffset, stringTable, nameSi);
 
         // Push tag to XML buffer
         //appendXmlIndent(xmlBuffer, indentCount, "</${tagName}>");
@@ -168,7 +169,8 @@ String parse(List<int> bytes) {
       case END_DOC_TAG:
         return xmlBuffer.toString();
       default:
-        throw new StateError("Unrecognized tag code '${currentTag.toRadixString(16)}' at offset ${off}");
+        throw new StateError(
+            "Unrecognized tag code '${currentTag.toRadixString(16)}' at offset ${off}");
         break;
     }
   }
@@ -204,7 +206,7 @@ String compXmlStringAt(List<int> bytes, int strOffset) {
  */
 int lew(List<int> bytes, int offset) {
   return bytes[offset + 3] << 24 & 0xff000000 |
-  bytes[offset + 2] << 16 & 0xff0000 |
-  bytes[offset + 1] << 8 & 0xff00 |
-  bytes[offset] & 0xFF;
+      bytes[offset + 2] << 16 & 0xff0000 |
+      bytes[offset + 1] << 8 & 0xff00 |
+      bytes[offset] & 0xFF;
 }

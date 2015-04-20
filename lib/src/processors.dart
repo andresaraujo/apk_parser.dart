@@ -1,4 +1,5 @@
 library processors;
+
 import 'package:xmlstream/xmlstream.dart';
 import 'package:apk_parser/apk_parser.dart';
 
@@ -12,7 +13,7 @@ class ActionProcessor extends XmlProcessor<Action> {
   }
 
   void onAttribute(String key, String value) {
-    switch(key) {
+    switch (key) {
       case "name":
         element.name = value;
         break;
@@ -29,7 +30,7 @@ class CategoryProcessor extends XmlProcessor<Category> {
   }
 
   void onAttribute(String key, String value) {
-    switch(key) {
+    switch (key) {
       case "name":
         element.name = value;
         break;
@@ -46,7 +47,7 @@ class DataProcessor extends XmlProcessor<Data> {
   }
 
   void onAttribute(String key, String value) {
-    switch(key) {
+    switch (key) {
       case "scheme":
         element.scheme = value;
         break;
@@ -98,7 +99,7 @@ class IntentFilterProcessor extends XmlParentProcessor<IntentFilter> {
     add(dataProcessor);
   }
   void onAttribute(String key, String value) {}
-  void onCharacters(String text){}
+  void onCharacters(String text) {}
 }
 class ActivityProcessor extends XmlProcessor<Activity> {
   ActivityProcessor() {
@@ -110,7 +111,7 @@ class ActivityProcessor extends XmlProcessor<Activity> {
   }
 
   void onAttribute(String key, String value) {
-    switch(key) {
+    switch (key) {
       case "name":
         element.name = value;
         break;
@@ -145,12 +146,14 @@ class ApplicationProcessor extends XmlParentProcessor<Application> {
   }
 
   void onAttribute(String key, String value) {
-    switch(key) {
+    switch (key) {
       case "allowTaskReparenting":
-        element.allowTaskReparenting = new bool.fromEnvironment(value, defaultValue: false);
+        element.allowTaskReparenting =
+            new bool.fromEnvironment(value, defaultValue: false);
         break;
       case "allowBackup":
-        element.allowBackup = new bool.fromEnvironment(value, defaultValue: true);
+        element.allowBackup =
+            new bool.fromEnvironment(value, defaultValue: true);
         break;
       case "backupAgent":
         element.backupAgent = value;
@@ -159,7 +162,8 @@ class ApplicationProcessor extends XmlParentProcessor<Application> {
         element.banner = value;
         break;
       case "debuggable":
-        element.debuggable = new bool.fromEnvironment(value, defaultValue: false);
+        element.debuggable =
+            new bool.fromEnvironment(value, defaultValue: false);
         break;
       case "description":
         element.description = value;
@@ -171,7 +175,8 @@ class ApplicationProcessor extends XmlParentProcessor<Application> {
         element.hasCode = new bool.fromEnvironment(value, defaultValue: true);
         break;
       case "hardwareAccelerated":
-        element.hardwareAccelerated = new bool.fromEnvironment(value, defaultValue: true);
+        element.hardwareAccelerated =
+            new bool.fromEnvironment(value, defaultValue: true);
         break;
       case "icon":
         element.icon = value;
@@ -180,10 +185,12 @@ class ApplicationProcessor extends XmlParentProcessor<Application> {
         element.isGame = new bool.fromEnvironment(value, defaultValue: false);
         break;
       case "killAfterRestore":
-        element.killAfterRestore = new bool.fromEnvironment(value, defaultValue: true);
+        element.killAfterRestore =
+            new bool.fromEnvironment(value, defaultValue: true);
         break;
       case "largeHeap":
-        element.largeHeap = new bool.fromEnvironment(value, defaultValue: false);
+        element.largeHeap =
+            new bool.fromEnvironment(value, defaultValue: false);
         break;
       case "label":
         element.label = value;
@@ -201,13 +208,15 @@ class ApplicationProcessor extends XmlParentProcessor<Application> {
         element.permission = value;
         break;
       case "persistent":
-        element.persistent = new bool.fromEnvironment(value, defaultValue: false);
+        element.persistent =
+            new bool.fromEnvironment(value, defaultValue: false);
         break;
       case "process":
         element.process = value;
         break;
       case "restoreAnyVersion":
-        element.restoreAnyVersion = new bool.fromEnvironment(value, defaultValue: false);
+        element.restoreAnyVersion =
+            new bool.fromEnvironment(value, defaultValue: false);
         break;
       case "requiredAccountType":
         element.requiredAccountType = value;
@@ -216,7 +225,8 @@ class ApplicationProcessor extends XmlParentProcessor<Application> {
         element.restrictedAccountType = value;
         break;
       case "supportsRtl":
-        element.supportsRtl = new bool.fromEnvironment(value, defaultValue: false);
+        element.supportsRtl =
+            new bool.fromEnvironment(value, defaultValue: false);
         break;
       case "taskAffinity":
         element.taskAffinity = value;
@@ -231,11 +241,12 @@ class ApplicationProcessor extends XmlParentProcessor<Application> {
         element.uiOptions = value;
         break;
       case "vmSafeMode":
-        element.vmSafeMode = new bool.fromEnvironment(value, defaultValue: false);
+        element.vmSafeMode =
+            new bool.fromEnvironment(value, defaultValue: false);
         break;
     }
   }
-  void onCharacters(String text){}
+  void onCharacters(String text) {}
 }
 class UsesSdkProcessor extends XmlProcessor<UsesSdk> {
   UsesSdkProcessor() {
@@ -247,7 +258,7 @@ class UsesSdkProcessor extends XmlProcessor<UsesSdk> {
   }
 
   void onAttribute(String key, String value) {
-    switch(key) {
+    switch (key) {
       case "minSdkVersion":
         element.minSdkVersion = int.parse(value);
         break;
@@ -258,9 +269,8 @@ class UsesSdkProcessor extends XmlProcessor<UsesSdk> {
         element.maxSdkVersion = int.parse(value);
         break;
     }
-
   }
-  void onCharacters(String text){}
+  void onCharacters(String text) {}
 }
 
 class UsesFeatureProcessor extends XmlProcessor<UsesFeature> {
@@ -273,7 +283,7 @@ class UsesFeatureProcessor extends XmlProcessor<UsesFeature> {
   }
 
   void onAttribute(String key, String value) {
-    switch(key) {
+    switch (key) {
       case "name":
         element.name = value;
         break;
@@ -285,9 +295,8 @@ class UsesFeatureProcessor extends XmlProcessor<UsesFeature> {
         element.glEsVersion = num.parse("${v >> 16}.${v & 0xffff}");
         break;
     }
-
   }
-  void onCharacters(String text){}
+  void onCharacters(String text) {}
 }
 
 class UsesPermissionProcessor extends XmlProcessor<UsesPermission> {
@@ -300,7 +309,7 @@ class UsesPermissionProcessor extends XmlProcessor<UsesPermission> {
   }
 
   void onAttribute(String key, String value) {
-    switch(key){
+    switch (key) {
       case "name":
         element.name = value;
         break;
@@ -309,11 +318,10 @@ class UsesPermissionProcessor extends XmlProcessor<UsesPermission> {
         break;
     }
   }
-  void onCharacters(String text){}
+  void onCharacters(String text) {}
 }
 
 class ManifestProcessor extends XmlParentProcessor<Manifest> {
-
   UsesPermissionProcessor usesPermissionProcessor;
   UsesFeatureProcessor usesFeatureProcessor;
   UsesSdkProcessor usesSdkProcessor;
@@ -360,7 +368,7 @@ class ManifestProcessor extends XmlParentProcessor<Manifest> {
   }
 
   void onAttribute(String key, String value) {
-    switch(key) {
+    switch (key) {
       case "versionCode":
         element.versionCode = int.parse(value);
         break;

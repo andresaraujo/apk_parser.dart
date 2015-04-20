@@ -25,7 +25,8 @@ Stream<Manifest> parseManifest(List<int> bytes) {
 
   var xmlStreamer = new XmlStreamer(xmlString);
 
-  var xmlObjectBuilder = new XmlObjectBuilder<Manifest>(xmlStreamer, new ManifestProcessor());
+  var xmlObjectBuilder =
+      new XmlObjectBuilder<Manifest>(xmlStreamer, new ManifestProcessor());
 
   //xmlObjectBuilder.onProcess().listen((e) => print("listen: ${e.application}"));
   return xmlObjectBuilder.onProcess();
