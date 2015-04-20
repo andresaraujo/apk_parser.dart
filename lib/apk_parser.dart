@@ -32,11 +32,10 @@ Future<Manifest> parseManifest(List<int> bytes) {
  * Returns a string that represents the parsed AndroidManifest.xml
  */
 String parseManifestXml(List<int> bytes) {
-
-  // Decode the Zip file
+  // Decode the Apk file
   Archive archive = new ZipDecoder().decodeBytes(bytes);
 
+  // Get a list of bytes representing the manifest xml
   List<int> manifestBytes = archive.findFile('AndroidManifest.xml').content;
-
   return parser.parse(manifestBytes);
 }

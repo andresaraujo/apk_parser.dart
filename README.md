@@ -34,7 +34,6 @@ main() async {
 ```
 
 ## TODO
-- Add tests
 - Create a cli command
 - Add documentation
 - Better examples
