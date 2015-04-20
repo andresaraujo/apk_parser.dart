@@ -1,7 +1,7 @@
 name: apk_parser
 description: >
   A pure dart library for parsing android apk data
-version: 0.0.1+2
+version: 0.0.2
 author: Andres Araujo <a.araujo.azua@gmail.com>
 homepage: https://github.com/andresaraujo/apk_parser.dart
 environment:
