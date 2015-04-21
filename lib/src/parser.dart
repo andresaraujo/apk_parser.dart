@@ -148,7 +148,6 @@ String parse(List<int> bytes) {
         }
 
         // Push tag to XML buffer
-        //appendXmlIndent(xmlBuffer, indentCount, "<${tagName + attrString.toString()}>");
         xmlBuffer.write("<${tagName + attrString.toString()}>");
         indentCount++;
         break;
@@ -163,7 +162,6 @@ String parse(List<int> bytes) {
             compXmlString(bytes, stringIndexTableOffset, stringTable, nameSi);
 
         // Push tag to XML buffer
-        //appendXmlIndent(xmlBuffer, indentCount, "</${tagName}>");
         xmlBuffer.write("</${tagName}>");
         break;
       case END_DOC_TAG:
