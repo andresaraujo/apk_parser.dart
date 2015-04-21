@@ -1,4 +1,4 @@
-library mmodels;
+library apk_parser.mmodels;
 
 /**
  * http://developer.android.com/guide/topics/manifest/manifest-element.html
