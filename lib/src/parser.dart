@@ -1,4 +1,4 @@
-library parser;
+library apk_parser.parser;
 
 /**
  * Extract android manifest from apk files. Original implementation in Java can
