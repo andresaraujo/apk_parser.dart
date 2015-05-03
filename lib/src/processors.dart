@@ -1,4 +1,4 @@
-library processors;
+library apk_parser.processors;
 
 import 'package:xmlstream/xmlstream.dart';
 import 'package:apk_parser/apk_parser.dart';
