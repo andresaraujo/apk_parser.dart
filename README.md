@@ -4,6 +4,8 @@ A pure dart library for parsing android apk data
 
 This is a work in progress
 
+[![Pub](https://img.shields.io/pub/v/apk_parser.svg?style=flat-square)](https://pub.dartlang.org/packages/apk_parser)
+
 ## Usage
 
 A simple usage example:
